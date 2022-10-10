@@ -7,11 +7,11 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user")
+@Table(name = "profile")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserEntity {
+public class Profile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +21,4 @@ public class UserEntity {
     @Column(unique = true)
     private String email;
     private String password;
-
-    //getter setters
 }
