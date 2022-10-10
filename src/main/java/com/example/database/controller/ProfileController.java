@@ -3,11 +3,13 @@ package com.example.database.controller;
 import com.example.database.entity.Profile;
 import com.example.database.repo.ProfileRepository;
 import com.sun.istack.NotNull;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@Slf4j
 @RequestMapping(path = "/profile")
 public class ProfileController {
 
@@ -29,6 +31,7 @@ public class ProfileController {
     @PostMapping(path = "/create")
     @ResponseBody // to send back the response body to Client in Normal Controller
     String createProfile(@RequestBody @NotNull Profile profile) {
+        log.info("In createProfile with profile: {}", profile);
         Profile save = profileRepository.save(profile);
         return "Profile Created with EmailID: "+save.getEmail();
     }
@@ -40,17 +43,24 @@ public class ProfileController {
 
     @GetMapping("/")
     public @ResponseBody Profile getProfile(@RequestParam String email) {
+        log.info("In getProfile with email: {}", email);
+        log.debug("In getProfile with email: {}", email);
+        log.error("In getProfile with email: {}", email);
+        log.trace("In getProfile with email: {}", email);
+        log.warn("In getProfile with email: {}", email);
         return profileRepository.findByEmail(email);
     }
 
     @DeleteMapping("/")
     public @ResponseBody Profile deleteProfile(@RequestParam String email) {
+        log.info("In deleteProfile with email: {}", email);
         return profileRepository.findByEmail(email);
     }
 
     @PutMapping("/update/{email}")
     @ResponseBody
     String updateProfile(@RequestBody @NotNull Profile profile, @PathVariable String email) {
+        log.info("In updateProfile with email: {}", email);
         Profile byEmail = profileRepository.findByEmail(email);
         byEmail.setPassword(profile.getPassword());
         profileRepository.save(byEmail);
