@@ -11,16 +11,16 @@ import javax.sql.DataSource;
 @Configuration
 public class DataBaseConfig {
 
-/*    @Primary
-    @Bean(name = "restApiService")
+    @Primary
+    @Bean("restApi")
     @ConfigurationProperties(prefix = "spring.datasource")
     public DataSource createDataSource() {
         return DataSourceBuilder.create().build();
-    }*/
+    }
 
-/*    @Bean(name = "dbUserService")
+    @Bean(name = "dbUserService")
     @ConfigurationProperties(prefix = "spring.userdatasource")
     public DataSource createUserServiceDataSource() {
         return DataSourceBuilder.create().build();
-    }*/
+    }
 }
